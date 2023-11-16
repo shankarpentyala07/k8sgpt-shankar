@@ -79,6 +79,15 @@ curl http://localhost:8080/v1/chat/completions -H "Content-Type: application/jso
 # {"model":"luna-ai-llama2","choices":[{"message":{"role":"assistant","content":"I'm doing well, thanks. How about you?"}}]}
 ```
 
+Local AI k8s setup:
+
+1. Helm install (RHEL 8.6)
+```
+wget https://get.helm.sh/helm-v3.9.4-linux-amd64.tar.gz
+tar -zxvf helm-v3.9.4-linux-amd64.tar.gz 
+sudo mv linux-amd64/helm /usr/local/bin/helm
+
+```
 Issues: The MAC 8core 32GB is struck when trying to run inference
 
 
