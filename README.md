@@ -88,6 +88,12 @@ tar -zxvf helm-v3.9.4-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin/helm
 
 ```
+
+2. helm 
+
+```
+helm repo add go-skynet https://go-skynet.github.io/helm-charts/
+```
 Issues: The MAC 8core 32GB is struck when trying to run inference
 
 
