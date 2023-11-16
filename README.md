@@ -44,6 +44,41 @@ Unused:
 
 SetUp LocalAI:
 
+```
+# Clone LocalAI
+git clone https://github.com/go-skynet/LocalAI
+
+cd LocalAI
+
+# (optional) Checkout a specific LocalAI tag
+# git checkout -b build <TAG>
+
+# Download luna-ai-llama2 to models/
+wget https://huggingface.co/TheBloke/Luna-AI-Llama2-Uncensored-GGUF/resolve/main/luna-ai-llama2-uncensored.Q4_0.gguf -O models/luna-ai-llama2
+
+# Use a template from the examples
+cp -rf prompt-templates/getting_started.tmpl models/luna-ai-llama2.tmpl
+
+# (optional) Edit the .env file to set things like context size and threads
+# vim .env
+
+# start with docker compose
+docker compose up -d --pull always
+# or you can build the images with:
+# docker compose up -d --build
+# Now API is accessible at localhost:8080
+curl http://localhost:8080/v1/models
+# {"object":"list","data":[{"id":"luna-ai-llama2","object":"model"}]}
+
+curl http://localhost:8080/v1/chat/completions -H "Content-Type: application/json" -d '{
+     "model": "luna-ai-llama2",
+     "messages": [{"role": "user", "content": "How are you?"}],
+     "temperature": 0.9
+   }'
+
+# {"model":"luna-ai-llama2","choices":[{"message":{"role":"assistant","content":"I'm doing well, thanks. How about you?"}}]}
+```
+
 https://localai.io/basics/getting_started/index.html#fast-setup
 
 
