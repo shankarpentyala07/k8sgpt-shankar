@@ -79,6 +79,10 @@ curl http://localhost:8080/v1/chat/completions -H "Content-Type: application/jso
 # {"model":"luna-ai-llama2","choices":[{"message":{"role":"assistant","content":"I'm doing well, thanks. How about you?"}}]}
 ```
 
+Issues: The MAC 8core 32GB is struck when trying to run inference
+
+
+
 https://localai.io/basics/getting_started/index.html#fast-setup
 
 
