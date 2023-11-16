@@ -25,4 +25,21 @@ Error: AI provider openai not specified in configuration. Please run k8sgpt auth
 Error: AI provider not specified in configuration
 ```
 
+List of configured providers:
+
+```
+k8sgpt auth list                                 
+Default: 
+> openai
+Active: 
+Unused: 
+> openai
+> localai
+> azureopenai
+> noopai
+> cohere
+> amazonbedrock
+> amazonsagemaker
+```
+
 k8sgpt auth --backend noopai --password sensitive
