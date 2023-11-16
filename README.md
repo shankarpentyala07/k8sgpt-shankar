@@ -42,6 +42,11 @@ Unused:
 > amazonsagemaker
 ```
 
+SetUp LocalAI:
+
+https://localai.io/basics/getting_started/index.html#fast-setup
+
+
 k8sgpt auth --backend noopai --password sensitive
 
 
