@@ -43,3 +43,8 @@ Unused:
 ```
 
 k8sgpt auth --backend noopai --password sensitive
+
+
+Refernces:
+https://anaisurl.com/k8sgpt-full-tutorial/
+https://itnext.io/k8sgpt-localai-unlock-kubernetes-superpowers-for-free-584790de9b65
