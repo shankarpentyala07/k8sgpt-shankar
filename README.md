@@ -86,9 +86,13 @@ Issues: The MAC 8core 32GB is struck when trying to run inference
 https://localai.io/basics/getting_started/index.html#fast-setup
 
 
-k8sgpt auth --backend noopai --password sensitive
+To authenticate to a specific backend:
+
+```k8sgpt auth --backend noopai --password sensitive```
 
 
 Refernces:
+
 https://anaisurl.com/k8sgpt-full-tutorial/
+
 https://itnext.io/k8sgpt-localai-unlock-kubernetes-superpowers-for-free-584790de9b65
