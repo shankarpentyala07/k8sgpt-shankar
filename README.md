@@ -165,6 +165,7 @@ useful Helm Commands:
 helm search repo
 helm search repo go-skynet/local-ai
 helm template my-release go-skynet/local-ai --dry-run --debug > manifests.yaml
+helm uninstall local-ai
 ```
 
 https://localai.io/basics/getting_started/index.html#fast-setup
