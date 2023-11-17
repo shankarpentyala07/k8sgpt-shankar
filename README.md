@@ -184,6 +184,23 @@ spec:
   version: v0.3.8
 ```
 
+
+Logs After Install:
+
+```
+oc logs release-k8sgpt-operator-controller-manager-699b95bfd9-pc7nj -f --tail 10
+Connection established between 172.30.201.143:8080 and localhost with time out of 1 seconds.
+Remote Address : 172.30.201.143:8080 
+K8sGPT address: 172.30.201.143:8080
+Created result openshiftmachineapimachineapicontrollers
+Created result openshiftmachineapimachineapioperatorwebhook
+Finished Reconciling k8sGPT
+Creating new client for 172.30.201.143:8080
+Connection established between 172.30.201.143:8080 and localhost with time out of 1 seconds.
+Remote Address : 172.30.201.143:8080 
+K8sGPT address: 172.30.201.143:8080
+```
+
 Check Model:
 
 ```
