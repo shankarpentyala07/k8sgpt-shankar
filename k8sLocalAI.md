@@ -191,6 +191,16 @@ spec:
   version: v0.3.8
 ```
 
+e) pod status:
+
+```
+kubectl get po
+NAME                                                          READY   STATUS    RESTARTS   AGE
+k8sgpt-deployment-db6db79d-vtqnl                              1/1     Running   0          4s
+release-k8sgpt-operator-controller-manager-7d887b9b89-4gr8s   2/2     Running   0          2m23s
+```
+
+
 
 Useful Helm Commands:
 
