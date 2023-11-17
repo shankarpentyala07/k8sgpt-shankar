@@ -90,3 +90,24 @@ d) Install the chart:
 ```
 helm install local-ai go-skynet/local-ai -f values.yaml
 ```
+
+
+Useful Helm Commands:
+
+```
+helm repo list
+WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /root/auth/kubeconfig
+NAME     	URL                                     
+go-skynet	https://go-skynet.github.io/helm-charts/
+
+helm search repo go-skynet --versions
+WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /root/auth/kubeconfig
+NAME              	CHART VERSION	APP VERSION	DESCRIPTION                                       
+go-skynet/local-ai	2.1.2        	1.3        	A Helm chart for deploying LocalAI to a Kuberne...
+go-skynet/local-ai	2.1.1        	0.1.0      	A Helm chart for deploying LocalAI to a Kuberne...
+go-skynet/local-ai	2.1.0        	0.1.0      	A Helm chart for deploying LocalAI to a Kuberne...
+go-skynet/local-ai	2.0.0        	0.1.0      	A Helm chart for deploying LocalAI to a Kuberne...
+go-skynet/local-ai	1.0.3        	0.1.0      	A Helm chart for LocalAI                          
+go-skynet/local-ai	1.0.2        	0.1.0      	A Helm chart for LocalAI                          
+go-skynet/local-ai	1.0.1        	0.1.0      	A Helm chart for LocalAI 
+```
