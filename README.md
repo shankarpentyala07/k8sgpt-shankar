@@ -201,6 +201,62 @@ Remote Address : 172.30.201.143:8080
 K8sGPT address: 172.30.201.143:8080
 ```
 
+
+Sample pullback Error:
+
+```
+kubectl create deployment hello-node --image=nginx:invalid
+```
+
+Results check:
+
+```
+oc get result -n k8sgpt-operator-system
+NAME                                           KIND      BACKEND
+openshiftmachineapimachineapicontrollers       Service   localai
+openshiftmachineapimachineapioperatorwebhook   Service   localai
+testk8shellonode75b8d4c4fnpzl                  Pod       localai
+```
+
+Sample result:
+
+Pod in ImagePullBack State:
+
+```
+oc get po -n test-k8s
+NAME                        READY   STATUS             RESTARTS   AGE
+hello-node-75b8d4c4-fnpzl   0/1     ImagePullBackOff   0          9m59s
+```
+
+result:
+
+```
+oc get result testk8shellonode75b8d4c4fnpzl -o yaml
+apiVersion: core.k8sgpt.ai/v1alpha1
+kind: Result
+metadata:
+  creationTimestamp: "2023-11-17T22:31:21Z"
+  generation: 1
+  labels:
+    k8sgpts.k8sgpt.ai/backend: localai
+    k8sgpts.k8sgpt.ai/name: k8sgpt-local-ai
+    k8sgpts.k8sgpt.ai/namespace: k8sgpt-operator-system
+  name: testk8shellonode75b8d4c4fnpzl
+  namespace: k8sgpt-operator-system
+  resourceVersion: "594252"
+  uid: 6b5972c0-9810-431e-bab0-c7ed10fe93a0
+spec:
+  backend: localai
+  details: Back-off pulling image "nginx"
+  error:
+  - text: Back-off pulling image "nginx"
+  kind: Pod
+  name: test-k8s/hello-node-75b8d4c4-fnpzl
+  parentObject: ""
+status:
+  lifecycle: historical
+```
+
 Check Model:
 
 ```
