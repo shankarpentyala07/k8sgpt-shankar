@@ -225,6 +225,43 @@ Creating new client for 172.30.149.11:8080
 Connection established between 172.30.149.11:8080 and localhost with time out of 1 seconds.
 Remote Address : 172.30.149.11:8080 
 K8sGPT address: 172.30.149.11:8080
+
+
+oc logs local-ai-84db9544b6-z586k  -n default
+Defaulted container "local-ai" out of: local-ai, download-model (init)
+@@@@@
+Skipping rebuild
+@@@@@
+If you are experiencing issues with the pre-compiled builds, try setting REBUILD=true
+If you are still experiencing issues with the build, try setting CMAKE_ARGS and disable the instructions set as needed:
+CMAKE_ARGS="-DLLAMA_F16C=OFF -DLLAMA_AVX512=OFF -DLLAMA_AVX2=OFF -DLLAMA_FMA=OFF"
+see the documentation at: https://localai.io/basics/build/index.html
+Note: See also https://github.com/go-skynet/LocalAI/issues/288
+@@@@@
+CPU info:
+model name	: AMD EPYC-Milan Processor
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm rep_good nopl cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy svm cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext perfctr_core ssbd ibrs ibpb stibp vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 rdseed adx smap clflushopt clwb sha_ni xsaveopt xsavec xgetbv1 xsaves clzero xsaveerptr wbnoinvd arat npt nrip_save umip vaes vpclmulqdq rdpid arch_capabilities
+CPU:    AVX    found OK
+CPU:    AVX2   found OK
+CPU: no AVX512 found
+@@@@@
+11:18PM INF Starting LocalAI using 4 threads, with models path: /models
+11:18PM INF LocalAI version: v1.40.0 (6ef7ea2635ae5371be4e6eef516c2ad4afd9f4a3)
+
+ ┌───────────────────────────────────────────────────┐ 
+ │                   Fiber v2.50.0                   │ 
+ │               http://127.0.0.1:8080               │ 
+ │       (bound on host 0.0.0.0 and port 8080)       │ 
+ │                                                   │ 
+ │ Handlers ............ 73  Processes ........... 1 │ 
+ │ Prefork ....... Disabled  PID ................ 14 │ 
+ └───────────────────────────────────────────────────┘ 
+
+rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:33791: connect: connection refused"
+rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:35443: connect: connection refused"
+rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:46769: connect: connection refused"
+rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp 127.0.0.1:37627: connect: connection refused"
+
 ```
 
 
