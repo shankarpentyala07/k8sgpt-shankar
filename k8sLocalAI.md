@@ -17,7 +17,21 @@ a) Add helm repo
 helm repo add go-skynet https://go-skynet.github.io/helm-charts/
 ```
 
-b) create values.yml file for helm :
+b) create pull secret:
+
+Command:
+
+```
+kubectl create secret docker-registry docker-registry-secret --docker-server=docker.io --docker-username=<username> --docker-password=<password>
+```
+
+Example:
+
+```
+kubectl create secret docker-registry docker-registry-secret --docker-server=docker.io --docker-username=shankarpentyala07 --docker-password=<password>
+```
+
+c) create values.yml file for helm :
 
 ```
 deployment:
