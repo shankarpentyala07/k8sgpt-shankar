@@ -153,6 +153,18 @@ CPU: no AVX512 found
 
 ## k8sGPT Setup:
 
+a) Add helm repo:
+
+```
+helm repo add k8sgpt https://charts.k8sgpt.ai/
+```
+
+b) Install the chart
+
+```
+helm install release k8sgpt/k8sgpt-operator -n k8sgpt-operator-system --create-namespace
+```
+
 
 
 Useful Helm Commands:
