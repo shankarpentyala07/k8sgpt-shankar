@@ -88,8 +88,28 @@ image:
 d) Install the chart:
 
 ```
-helm install local-ai go-skynet/local-ai -f values.yaml
+helm install local-ai go-skynet/local-ai -f values.yml --version 2.1.2
 ```
+
+Sample Output:
+```
+helm install local-ai go-skynet/local-ai -f values.yml --version 2.1.2
+WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /root/auth/kubeconfig
+I1117 14:59:30.943408  122252 request.go:601] Waited for 1.186391393s due to client-side throttling, not priority and fairness, request: <api>
+W1117 14:59:36.907532  122252 warnings.go:70] unknown field "spec.template.spec.containers[0].imagePullSecrets"
+W1117 14:59:36.907554  122252 warnings.go:70] unknown field "spec.template.spec.initContainers[0].imagePullSecrets"
+NAME: local-ai
+LAST DEPLOYED: Fri Nov 17 14:59:34 2023
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+
+```
+
+### Issue:
+
+Current , bug is imagePullSecrets doesn't get applied to the deployment
 
 
 Useful Helm Commands:
