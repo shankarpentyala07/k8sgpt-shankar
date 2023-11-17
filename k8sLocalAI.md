@@ -111,6 +111,12 @@ TEST SUITE: None
 
 Current , bug is imagePullSecrets doesn't get applied to the deployment
 
+Workaround: (Patch Deployment)
+
+```
+kubectl patch deployment local-ai  -p '{"spec": {"template": {"spec": {"imagePullSecrets": [{"name": "docker-registry-secret"}]}}}}'
+```
+
 
 Useful Helm Commands:
 
