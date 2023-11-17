@@ -264,7 +264,13 @@ rpc error: code = Unavailable desc = connection error: desc = "transport: Error 
 
 ```
 
+g) test :
 
+```
+oc new-project test-k8s
+kubectl create deployment hello-node --image=nginx:invalid
+
+```
 
 Useful Helm Commands:
 
