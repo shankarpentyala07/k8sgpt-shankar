@@ -165,7 +165,14 @@ k8sgpt install:
 ```
 helm install release k8sgpt/k8sgpt-operator -n k8sgpt-operator-system --create-namespace
 ```
+Check Model:
 
+```
+oc rsh local-ai-7d67657c85-tfxmt 
+Defaulted container "local-ai" out of: local-ai, download-model (init)
+# curl http://localhost:8080/v1/models
+{"object":"list","data":[{"id":"ggml-gpt4all-j","object":"model"}]}# 
+```
 
 useful Helm Commands:
 
