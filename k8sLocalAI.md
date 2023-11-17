@@ -313,3 +313,11 @@ k8sgpt/k8sgpt-operator	0.0.9        	0.0.9      	Automatic SRE Superpowers withi
 k8sgpt/k8sgpt-operator	0.0.8        	0.1.0      	A Helm chart for Kubernetes                       
 k8sgpt/k8sgpt-operator	0.0.6        	0.1.0      	A Helm chart for Kubernetes  
 ```
+
+To sort events by Timestamp:
+
+
+```
+oc get events --sort-by='.metadata.creationTimestamp'
+oc get events --sort-by='.metadata.creationTimestamp' -w
+```
