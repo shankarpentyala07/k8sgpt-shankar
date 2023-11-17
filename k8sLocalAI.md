@@ -115,6 +115,8 @@ Workaround: (Patch Deployment)
 
 ```
 kubectl patch deployment local-ai  -p '{"spec": {"template": {"spec": {"imagePullSecrets": [{"name": "docker-registry-secret"}]}}}}'
+kubectl scale deploy local-ai --replicas=0
+kubectl scale deploy local-ai --replicas=1
 ```
 
 
