@@ -200,6 +200,33 @@ k8sgpt-deployment-db6db79d-vtqnl                              1/1     Running   
 release-k8sgpt-operator-controller-manager-7d887b9b89-4gr8s   2/2     Running   0          2m23s
 ```
 
+f) pod logs:
+
+```
+oc logs k8sgpt-deployment-db6db79d-vtqnl  
+{"level":"info","ts":1700263707.5188112,"caller":"server/server.go:83","msg":"binding metrics to 8081"}
+{"level":"info","ts":1700263707.51993,"caller":"server/server.go:68","msg":"binding api to 8080"}
+
+
+oc logs release-k8sgpt-operator-controller-manager-7d887b9b89-4gr8s 
+2023-11-17T23:26:10Z	INFO	controller-runtime.metrics	Metrics server is starting to listen	{"addr": "127.0.0.1:8080"}
+2023-11-17T23:26:10Z	INFO	setup	starting manager
+2023-11-17T23:26:10Z	INFO	starting server	{"path": "/metrics", "kind": "metrics", "addr": "127.0.0.1:8080"}
+2023-11-17T23:26:10Z	INFO	Starting server	{"kind": "health probe", "addr": "[::]:8081"}
+I1117 23:26:10.453174       1 leaderelection.go:250] attempting to acquire leader lease k8sgpt-operator-system/ea9c19f7.k8sgpt.ai...
+I1117 23:26:10.473612       1 leaderelection.go:260] successfully acquired lease k8sgpt-operator-system/ea9c19f7.k8sgpt.ai
+2023-11-17T23:26:10Z	DEBUG	events	release-k8sgpt-operator-controller-manager-7d887b9b89-4gr8s_38fa863f-fff9-4823-a388-61710a97a312 became leader	{"type": "Normal", "object": {"kind":"Lease","namespace":"k8sgpt-operator-system","name":"ea9c19f7.k8sgpt.ai","uid":"8bd8badc-1f2e-485e-b400-d26ca32afd8b","apiVersion":"coordination.k8s.io/v1","resourceVersion":"2818022"}, "reason": "LeaderElection"}
+2023-11-17T23:26:10Z	INFO	Starting EventSource	{"controller": "k8sgpt", "controllerGroup": "core.k8sgpt.ai", "controllerKind": "K8sGPT", "source": "kind source: *v1alpha1.K8sGPT"}
+2023-11-17T23:26:10Z	INFO	Starting Controller	{"controller": "k8sgpt", "controllerGroup": "core.k8sgpt.ai", "controllerKind": "K8sGPT"}
+2023-11-17T23:26:10Z	INFO	Starting workers	{"controller": "k8sgpt", "controllerGroup": "core.k8sgpt.ai", "controllerKind": "K8sGPT", "worker count": 1}
+Finished Reconciling k8sGPT
+Finished Reconciling k8sGPT
+Creating new client for 172.30.149.11:8080
+Connection established between 172.30.149.11:8080 and localhost with time out of 1 seconds.
+Remote Address : 172.30.149.11:8080 
+K8sGPT address: 172.30.149.11:8080
+```
+
 
 
 Useful Helm Commands:
