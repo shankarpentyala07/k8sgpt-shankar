@@ -84,3 +84,9 @@ service:
 image:
   pullPolicy: IfNotPresent
 ```
+
+d) Install the chart:
+
+```
+helm install local-ai go-skynet/local-ai -f values.yaml
+```
