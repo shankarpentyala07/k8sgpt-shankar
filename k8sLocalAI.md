@@ -165,7 +165,15 @@ b) Install the chart
 helm install release k8sgpt/k8sgpt-operator -n k8sgpt-operator-system --create-namespace --version 0.0.24
 ```
 
-c) Create k8sgpt cr:
+c) Check k8sgpt operator pod :
+
+```
+oc get po
+NAME                                                          READY   STATUS    RESTARTS   AGE
+release-k8sgpt-operator-controller-manager-7d887b9b89-4gr8s   2/2     Running   0          65s
+```
+
+d) Create k8sgpt cr:
 
 ```
 apiVersion: core.k8sgpt.ai/v1alpha1
