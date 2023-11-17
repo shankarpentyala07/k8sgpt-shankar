@@ -162,9 +162,26 @@ helm repo add k8sgpt https://charts.k8sgpt.ai/
 b) Install the chart
 
 ```
-helm install release k8sgpt/k8sgpt-operator -n k8sgpt-operator-system --create-namespace
+helm install release k8sgpt/k8sgpt-operator -n k8sgpt-operator-system --create-namespace --version 0.0.24
 ```
 
+c) Create k8sgpt cr:
+
+```
+apiVersion: core.k8sgpt.ai/v1alpha1
+kind: K8sGPT
+metadata:
+  name: k8sgpt-local-ai
+  namespace: k8sgpt-operator-system
+spec:
+  ai:
+    enabled: true
+    model: ggml-gpt4all-j
+    backend: localai
+    baseUrl: http://local-ai.default.svc.cluster.local:80/v1
+  noCache: false
+  version: v0.3.8
+```
 
 
 Useful Helm Commands:
