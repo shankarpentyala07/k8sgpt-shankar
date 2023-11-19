@@ -1,28 +1,20 @@
----
-- name: Install Helm
-  become: yes
-  
-  vars_files:
-    - vars/main.yml
-  
-  tasks:
-    - name: Download Helm
-      get_url:
-        url: "https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz"
-        dest: "/tmp/helm-{{ helm_version }}-linux-amd64.tar.gz"
+- name: Download Helm
+  get_url:
+      url: "https://get.helm.sh/helm-{{ helm_version }}-linux-amd64.tar.gz"
+      dest: "/tmp/helm-{{ helm_version }}-linux-amd64.tar.gz"
 
-    - name: Extract Helm
-      ansible.builtin.unarchive:
-        src: "/tmp/helm-{{ helm_version }}-linux-amd64.tar.gz"
-        dest: "/tmp"
+- name: Extract Helm
+  ansible.builtin.unarchive:
+     src: "/tmp/helm-{{ helm_version }}-linux-amd64.tar.gz"
+     dest: "/tmp"
 
-    - name: Move Helm binary to /usr/local/bin
-      command: "mv /tmp/linux-amd64/helm /usr/local/bin/helm"
+- name: Move Helm binary to /usr/local/bin
+  command: "mv /tmp/linux-amd64/helm /usr/local/bin/helm"
 
-    - name: Clean up temporary files
-      file:
-        path: "/tmp/{{ item }}"
-        state: absent
-      loop:
-        - "helm-{{ helm_version }}-linux-amd64.tar.gz"
-        - "linux-amd64"
+- name: Clean up temporary files
+  file:
+     path: "/tmp/{{ item }}"
+     state: absent
+  loop:
+    - "helm-{{ helm_version }}-linux-amd64.tar.gz"
+    - "linux-amd64"

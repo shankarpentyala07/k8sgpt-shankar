@@ -1,6 +1,5 @@
 ---
-- name: k8sGPT setup
-  connection: local
+- hosts: localhost
   become: true  # sudo privileges
 
   roles:
