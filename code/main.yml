@@ -4,3 +4,4 @@
 
   roles:
     - helm_install
+    - localai

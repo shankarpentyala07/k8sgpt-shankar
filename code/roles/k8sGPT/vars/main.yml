@@ -1,0 +1,5 @@
+# roles/k8sGPT/vars/main.yml
+---
+helm_chart_version: "0.0.24"
+k8sgpt_model: "ggml-gpt4all-j"
+

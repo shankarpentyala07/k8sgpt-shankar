@@ -1,0 +1,15 @@
+helm_version: "v3.9.4"
+
+helm_chart_version: "0.0.24"
+k8sgpt_model: "ggml-gpt4all-j"
+
+
+storage_class: <your_storage_class>
+image_pull_secret_name: docker-registry-secret
+docker_registry_server: docker.io
+docker_registry_username: <your_username>
+docker_registry_password: <your_password>
+
+
+
+

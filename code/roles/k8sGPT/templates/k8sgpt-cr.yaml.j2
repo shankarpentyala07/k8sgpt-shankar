@@ -1,0 +1,13 @@
+apiVersion: core.k8sgpt.ai/v1alpha1
+kind: K8sGPT
+metadata:
+  name: k8sgpt-local-ai
+  namespace: k8sgpt-operator-system
+spec:
+  ai:
+    enabled: true
+    model: "{{ model }}"
+    backend: localai
+    baseUrl: http://local-ai.default.svc.cluster.local:80/v1
+  noCache: false
+  version: v0.3.8

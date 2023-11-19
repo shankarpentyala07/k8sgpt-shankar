@@ -1,0 +1,73 @@
+---
+- name: Add Helm Repo
+  community.general.helm_repository:
+    name: go-skynet
+    repo_url: https://go-skynet.github.io/helm-charts/
+    state: present
+
+- name: Create Docker Registry Secret
+  command: "kubectl create secret docker-registry docker-registry-secret --docker-server={{ docker_registry_server }} --docker-username={{ docker_registry_username }} --docker-password={{ docker_registry_password }} -n default"
+
+- name: Create values.yml file
+  template:
+    src: templates/values.yml.j2
+    dest: /tmp/values.yml
+
+- name: Install Helm Chart
+  community.general.helm:
+    name: local-ai
+    chart_ref: go-skynet/local-ai
+    version: 2.1.2
+    namespace: default
+    values_files:
+      - /tmp/values.yml
+
+- name: Scale local-ai Deployment to 0
+  kubernetes.core.k8s_scale:
+      apiVersion: v1
+      kind: Deployment
+      name: local-ai
+      namespace: default
+      replicas: 0
+      wait: false
+
+- name: Wait for Deployment to scale to 0
+  k8s_info:
+    kind: Deployment
+    name: local-ai
+    namespace: default
+  register: deployment_info_result
+  until: deployment_info_result.resources[0].spec.replicas == 0
+  retries: 60
+  delay: 10
+
+- name: Apply Patch to Deployment
+  kubernetes.core.k8s_json_patch:
+    kind: Deployment
+    namespace: default
+    name: local-ai
+    patch:
+     - op: add
+       path: /spec/template/spec/imagePullSecrets
+       value:
+        - name: docker-registry-secret
+
+- name: Scale Deployment back to 1
+  kubernetes.core.k8s_scale:
+      apiVersion: v1
+      kind: Deployment
+      name: local-ai
+      namespace: default
+      replicas: 1
+      wait: false
+
+- name: Wait for local-ai Deployment to scale to 1
+  k8s_info:
+    kind: Deployment
+    name: local-ai
+    namespace: default
+  register: deployment_info_result
+  until: deployment_info_result.resources[0].spec.replicas == 1
+  retries: 60
+  delay: 10
+
