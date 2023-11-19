@@ -1,0 +1,3 @@
+---
+# vars file for helm_install
+helm_version: "v3.9.4"

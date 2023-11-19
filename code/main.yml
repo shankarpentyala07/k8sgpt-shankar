@@ -1,0 +1,7 @@
+---
+- name: k8sGPT setup
+  connection: local
+  become: true  # sudo privileges
+
+  roles:
+    - helm_install
