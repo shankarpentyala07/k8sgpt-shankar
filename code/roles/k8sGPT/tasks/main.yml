@@ -33,6 +33,11 @@
   vars:
     model: "{{ k8sgpt_model }}"
 
+- name: Sleep for 30 seconds and continue with play
+  ansible.builtin.wait_for:
+    timeout: 30
+  delegate_to: localhost
+
 - name: Wait for k8sgpt deployment to be running
   k8s_info:
     kind: Pod

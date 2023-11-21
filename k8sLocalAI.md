@@ -327,3 +327,18 @@ To sort events by Timestamp:
 oc get events --sort-by='.metadata.creationTimestamp'
 oc get events --sort-by='.metadata.creationTimestamp' -w
 ```
+
+Uninstall:
+
+```
+1. List helm charts
+helm list -A
+
+2. uninstall:
+
+```
+oc patch k8sgpt k8sgpt-local-ai -p '{"metadata":{"finalizers":null}}' --type=merge -n k8sgpt-operator-system
+oc delete k8sgpt k8sgpt-local-ai -n k8sgpt-operator-system
+helm uninstall release -n k8sgpt-operator-system 
+helm uninstall local-ai  -n default
+```
