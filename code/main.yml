@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
-  become: true  # sudo privileges
 
   roles:
     - helm_install
     - localai
+    - k8sGPT

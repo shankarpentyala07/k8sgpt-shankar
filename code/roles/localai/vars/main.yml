@@ -5,5 +5,4 @@ image_pull_secret_name: docker-registry-secret
 docker_registry_server: docker.io
 docker_registry_username: <your_username>
 docker_registry_password: <your_password>
-
-
+localai_namespace: default

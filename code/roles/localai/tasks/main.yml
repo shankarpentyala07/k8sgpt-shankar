@@ -1,12 +1,24 @@
 ---
 - name: Add Helm Repo
-  community.general.helm_repository:
+  kubernetes.core.helm_repository:
     name: go-skynet
     repo_url: https://go-skynet.github.io/helm-charts/
     state: present
 
-- name: Create Docker Registry Secret
-  command: "kubectl create secret docker-registry docker-registry-secret --docker-server={{ docker_registry_server }} --docker-username={{ docker_registry_username }} --docker-password={{ docker_registry_password }} -n default"
+- name: Cleanup /tmp/docker-secret.yaml if exists
+  file:
+    path: "/tmp/{{ item }}"
+    state: absent
+  loop:
+    - "/tmp/docker-secret.yaml"
+
+- name: Create Docker Registry Secret file
+  shell: "kubectl create secret docker-registry docker-registry-secret --docker-server={{ docker_registry_server }} --docker-username={{ docker_registry_username }} --docker-password='{{ docker_registry_password }}' -n default --dry-run=client -o yaml > /tmp/docker-secret.yaml"
+
+
+- name: Apply Docker Secret 
+  command: "kubectl apply -f /tmp/docker-secret.yaml"
+
 
 - name: Create values.yml file
   template:
@@ -14,17 +26,17 @@
     dest: /tmp/values.yml
 
 - name: Install Helm Chart
-  community.general.helm:
+  kubernetes.core.helm:
     name: local-ai
     chart_ref: go-skynet/local-ai
-    version: 2.1.2
+    chart_version: 2.1.2
     namespace: default
     values_files:
       - /tmp/values.yml
 
 - name: Scale local-ai Deployment to 0
   kubernetes.core.k8s_scale:
-      apiVersion: v1
+      api_version: v1
       kind: Deployment
       name: local-ai
       namespace: default
@@ -54,7 +66,7 @@
 
 - name: Scale Deployment back to 1
   kubernetes.core.k8s_scale:
-      apiVersion: v1
+      api_version: v1
       kind: Deployment
       name: local-ai
       namespace: default
@@ -70,4 +82,3 @@
   until: deployment_info_result.resources[0].spec.replicas == 1
   retries: 60
   delay: 10
-

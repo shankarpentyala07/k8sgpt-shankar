@@ -1,33 +1,32 @@
 # roles/k8sGPT/tasks/main.yml
 ---
 - name: Add Helm Repo
-  community.general.helm_repository:
+  kubernetes.core.helm_repository:
     name: k8sgpt
     repo_url: https://charts.k8sgpt.ai/
     state: present
 
 - name: Install Chart
-  community.general.helm:
+  kubernetes.core.helm:
     name: release
     chart_ref: k8sgpt/k8sgpt-operator
     namespace: k8sgpt-operator-system
     create_namespace: yes
-    version: "{{ helm_chart_version }}"
+    chart_version: "{{ helm_chart_version }}"
   register: helm_install_result
 
 - name: Wait for k8sgpt operator pod to be running
-  community.kubernetes.k8s_info:
+  k8s_info:
     kind: Pod
-    label_selectors: "release=release-k8sgpt-operator-controller-manager"
+    label_selectors: "app.kubernetes.io/name=k8sgpt-operator"
     namespace: k8sgpt-operator-system
   register: pod_info_result
   until: pod_info_result.resources[0].status.phase == 'Running'
   retries: 30
   delay: 10
-  ignore_errors: yes
 
 - name: Create k8sgpt cr
-  community.kubernetes.k8s:
+  kubernetes.core.k8s:
     state: present
     definition: "{{ lookup('template', 'k8sgpt-cr.yaml.j2') }}"
     wait: yes
@@ -35,7 +34,7 @@
     model: "{{ k8sgpt_model }}"
 
 - name: Wait for k8sgpt deployment to be running
-  community.kubernetes.k8s_info:
+  k8s_info:
     kind: Pod
     label_selectors: "app=k8sgpt-deployment"
     namespace: k8sgpt-operator-system
@@ -43,5 +42,3 @@
   until: k8sgpt_deployment_info_result.resources[0].status.phase == 'Running'
   retries: 30
   delay: 10
-  ignore_errors: yes
-
